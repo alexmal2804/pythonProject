@@ -44,8 +44,7 @@ def generate_df() -> object:
     print(df)
     df.set_index('Birthday')['Graduation_year'].plot()
     plt.show()
-    df.Friends_count = df['Friend_list'].count()
-    df.set_index('Graduation_year')['Friends_count'].plot()
+    plt.bar(df['Graduation_year'], df['Friend_list'])
     plt.show()
 if __name__ == '__main__':
     generate_df()
