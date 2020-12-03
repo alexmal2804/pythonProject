@@ -114,7 +114,7 @@ class Phystech:
         print('Мой стоп-лист', self.get_uid(), Phystech.stop_list[self.get_uid()])
         self.set_last_online()
 
-
+'''
 ovchinkin = Phystech(
     name='Овчинкин Владимир Александрович',
     birthday=datetime(year=1946, month=6, day=9),
@@ -139,6 +139,7 @@ landau = Phystech(
     password='I<3Physics'
 )
 
+
 ovchinkin.add_friend(landau.get_uid())
 ovchinkin.add_friend(paul_simon.get_uid())
 ovchinkin.print_friends()
@@ -148,3 +149,4 @@ paul_simon.add_friend(landau.get_uid())
 landau.print_friends()
 landau.del_friend(ovchinkin.get_uid())
 landau.print_friends()
+'''
