@@ -118,8 +118,8 @@ class Phystech:
 
     # формирование списка полей
     @property
-    def get_fields(self) -> []:
-        return [self.get_uid(), self.name, self.last_online, self._birthday, self._graduation_year, self.friends]
+    def get_fields(self) -> dict:
+        return {'UID': self.get_uid(), 'Name': self.name, 'Last_online': self.last_online, 'Birthday': self._birthday, 'Graduation_year': self._graduation_year, "Friend_list": self.friends}
 '''
 ovchinkin = Phystech(
     name='Овчинкин Владимир Александрович',

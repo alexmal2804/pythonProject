@@ -9,7 +9,7 @@ from pandas import DataFrame
 import Phystech
 import string
 import datetime as dt
-
+import matplotlib.pyplot as plt
 users: Phystech = []
 
 
@@ -32,13 +32,20 @@ def generate_df() -> object:
         birthday: dt.datetime = dt.datetime(rnd.randint(1900, 2012), rnd.randint(1, 12), rnd.randint(1, 28))
         users.append(Phystech.Phystech(full_name, login, password, graduation_year, birthday))
         for j in range(rnd.randint(0, 10)):
-            users[i].add_friend(rnd.randint(0, i))
+            k = rnd.randint(0, i)
+            if k not in users[i].friends:
+                users[i].add_friend(rnd.randint(0, i))
     # print(users)
     # print([users[i].friends for i in range(0, len(users))])
     # , columns=['UID', 'Name', 'Last_online', 'birthday', 'Graduation_year', 'Friends']
-    df: DataFrame = pd.DataFrame(users[0].get_fields)
-
-    print(users[0].get_fields)
-    print(df.head())
+    # f = pd.DataFrame([x.as_dict() for x in person_list])
+    # a.set_index('Date')['3'].plot()
+    df: DataFrame = pd.DataFrame(x.get_fields for x in users)
+    print(df)
+    df.set_index('Birthday')['Graduation_year'].plot()
+    plt.show()
+    df.Friends_count = df['Friend_list'].count()
+    df.set_index('Graduation_year')['Friends_count'].plot()
+    plt.show()
 if __name__ == '__main__':
     generate_df()
