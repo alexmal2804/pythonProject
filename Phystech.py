@@ -19,8 +19,11 @@ from collections import defaultdict
 
 class Phystech:
     uid = 0
+    # Лог активностей
     list_online = defaultdict(list)
+    # Стоп-лист
     stop_list = defaultdict(list)
+    # Список друзей
     friend_list = defaultdict(list)
 
     def __init__(
@@ -52,6 +55,7 @@ class Phystech:
             return datetime.now().year - self._graduation_year > 0
         return None
 
+    # Ведение лога активностей
     def set_last_online(self):
         self.last_online = datetime.now()
         Phystech.list_online[self.get_uid()].append(self.last_online)
@@ -78,12 +82,14 @@ class Phystech:
             f'last_online:\t{self.last_online}',
         ])
 
+    # Чтение UID
     def get_uid(self) -> Optional[int]:
         if self.__uid is not None:
             return self.__uid
         else:
             return None
 
+    # Добавление в друзья
     def add_friend(self, uid: int):
         if self.get_uid() not in Phystech.stop_list[uid]:
             self.friends.append(uid)
@@ -91,16 +97,27 @@ class Phystech:
             print(f'Вы не можете добавить пользователя с идентификатором {uid} в друзья')
         self.set_last_online()
 
+    # Удаление из списка друзей
+    def del_friend(self, uid: int):
+        if uid not in self.friends:
+            self.friends.pop(uid)
+        else:
+            print(f'Пользователь с идентификатором {uid} не является вашим другом')
+        self.set_last_online()
+
+    # Включение пользователя в стоп-лист
     def set_stop_list(self, uid: int):
         Phystech.stop_list[self.get_uid()].append(uid)
         self.set_last_online()
 
+    # Печать данных о друзьях, стоплисте и списке активностей
     def print_friends(self):
         print('\nМеня зовут', self.name)
         print('Мой список актвинотсей ', self.get_uid(), Phystech.list_online[self.get_uid()])
         print('Мой список друзей ', self.friends)
         print('Мой стоп-лист', self.get_uid(), Phystech.stop_list[self.get_uid()])
         self.set_last_online()
+
 
 ovchinkin = Phystech(
     name='Овчинкин Владимир Александрович',
@@ -126,11 +143,12 @@ landau = Phystech(
     password='I<3Physics'
 )
 
-# landau.print_friends()
 ovchinkin.add_friend(landau.get_uid())
 ovchinkin.add_friend(paul_simon.get_uid())
 ovchinkin.print_friends()
 landau.set_stop_list(paul_simon.get_uid())
-landau.print_friends()
+landau.add_friend(ovchinkin.get_uid())
 paul_simon.add_friend(landau.get_uid())
-
+landau.print_friends()
+landau.del_friend(ovchinkin.get_uid())
+landau.print_friends()
