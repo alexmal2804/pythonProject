@@ -4,6 +4,8 @@
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 import random as rnd
 import pandas as pd
+from pandas import DataFrame
+
 import Phystech
 import string
 import datetime as dt
@@ -33,9 +35,10 @@ def generate_df() -> object:
             users[i].add_friend(rnd.randint(0, i))
     # print(users)
     # print([users[i].friends for i in range(0, len(users))])
-    df = pd.DataFrame(columns=['UID', 'Name', 'last_online', 'birthday', 'graduation_year', 'friends'])
-    for i in range(len(users)):
-        df.append(users[i].get_field())
-    print(df)
+    # , columns=['UID', 'Name', 'Last_online', 'birthday', 'Graduation_year', 'Friends']
+    df: DataFrame = pd.DataFrame(users[0].get_fields)
+
+    print(users[0].get_fields)
+    print(df.head())
 if __name__ == '__main__':
     generate_df()

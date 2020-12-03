@@ -116,7 +116,9 @@ class Phystech:
         print('Мой стоп-лист', self.get_uid(), Phystech.stop_list[self.get_uid()])
         self.set_last_online()
 
-    def get_field(self) -> list:
+    # формирование списка полей
+    @property
+    def get_fields(self) -> []:
         return [self.get_uid(), self.name, self.last_online, self._birthday, self._graduation_year, self.friends]
 '''
 ovchinkin = Phystech(
