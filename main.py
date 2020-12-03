@@ -36,10 +36,6 @@ def generate_df() -> object:
             if k not in users[i].friends:
                 users[i].add_friend(rnd.randint(0, i))
     # print(users)
-    # print([users[i].friends for i in range(0, len(users))])
-    # , columns=['UID', 'Name', 'Last_online', 'birthday', 'Graduation_year', 'Friends']
-    # f = pd.DataFrame([x.as_dict() for x in person_list])
-    # a.set_index('Date')['3'].plot()
     df: DataFrame = pd.DataFrame(x.get_fields for x in users)
     print(df)
     df = df.sort_values('Birthday')
