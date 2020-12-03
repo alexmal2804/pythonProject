@@ -31,9 +31,11 @@ def generate_df() -> object:
         users.append(Phystech.Phystech(full_name, login, password, graduation_year, birthday))
         for j in range(rnd.randint(0, 10)):
             users[i].add_friend(rnd.randint(0, i))
-    print(users)
-    print([users[i].friends for i in range(0, len(users))])
-
-
+    # print(users)
+    # print([users[i].friends for i in range(0, len(users))])
+    df = pd.DataFrame(columns=['UID', 'Name', 'last_online', 'birthday', 'graduation_year', 'friends'])
+    for i in range(len(users)):
+        df.append(users[i].get_field())
+    print(df)
 if __name__ == '__main__':
     generate_df()
