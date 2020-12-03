@@ -74,6 +74,7 @@ class Phystech:
 
     def __repr__(self) -> str:
         return '\n'.join([
+            f'name:\t{self.name}'
             f'uid:\t{self.__uid}',
             f'last_online:\t{self.last_online}',
             f'birthday:\t{self._birthday}',

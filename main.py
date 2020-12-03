@@ -18,7 +18,7 @@ def generate_df() -> object:
     сколько у разных пользователей общих друзей, а потом визуализировать эти данные в seaborn с помощью line plots и heatmap
     соответственно."""
     # Создаем пользователей
-    for i in range(rnd.randint(10, 100)):
+    for i in range(0, rnd.randint(100, 1000)):
         first_name: str = "{0}{1}".format(str(string.ascii_uppercase[rnd.randint(0, 22)]), "".join(
             [string.ascii_lowercase[rnd.randint(0, 22)] for i in range(rnd.randint(3, 12))])) + " "
         second_name: str = "{0}{1}".format(str(string.ascii_uppercase[rnd.randint(0, 22)]), "".join(
@@ -29,7 +29,10 @@ def generate_df() -> object:
         graduation_year: int = rnd.randint(1900, 2020)
         birthday: dt.datetime = dt.datetime(rnd.randint(1900, 2012), rnd.randint(1, 12), rnd.randint(1, 28))
         users.append(Phystech.Phystech(full_name, login, password, graduation_year, birthday))
+        for j in range(rnd.randint(0, 10)):
+            users[i].add_friend(rnd.randint(0, i))
     print(users)
+    print([users[i].friends for i in range(0, len(users))])
 
 
 if __name__ == '__main__':
