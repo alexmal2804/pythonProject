@@ -43,7 +43,7 @@ def generate_df() -> object:
     df: DataFrame = pd.DataFrame(x.get_fields for x in users)
     print(df)
     df = df.sort_values('Birthday')
-    df.set_index('Birthday')['Graduation_year'].plot()
+    plt.scatter(df['Birthday'], df['Graduation_year'])
     plt.show()
     df = df.sort_values('Graduation_year')
     plt.bar(df['Graduation_year'], df['Friend_list'])
