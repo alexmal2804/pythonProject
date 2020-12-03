@@ -6,8 +6,11 @@ import random as rnd
 import pandas as pd
 import Phystech
 import string
+import datetime as dt
 
 users: Phystech = []
+
+
 def generate_df() -> object:
     # Use a breakpoint in the code line below to debug your script.
     """Задание с двумя звёздочками -- сгенерировать 20 случайных пользователей, случайным образом
@@ -23,8 +26,11 @@ def generate_df() -> object:
         full_name = first_name + second_name
         login: str = "".join([string.ascii_lowercase[rnd.randint(0, 22)] for i in range(rnd.randint(3, 12))])
         password: str = "".join([string.ascii_letters[rnd.randint(0, 22)] for i in range(rnd.randint(3, 12))])
-
-        users.append(Phystech.Phystech(full_name, login, password))
+        graduation_year: int = rnd.randint(1900, 2020)
+        birthday: dt.datetime = dt.datetime(rnd.randint(1900, 2012), rnd.randint(1, 12), rnd.randint(1, 28))
+        users.append(Phystech.Phystech(full_name, login, password, graduation_year, birthday))
     print(users)
+
+
 if __name__ == '__main__':
     generate_df()

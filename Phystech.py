@@ -76,6 +76,7 @@ class Phystech:
         return '\n'.join([
             f'uid:\t{self.__uid}',
             f'last_online:\t{self.last_online}',
+            f'birthday:\t{self._birthday}',
         ])
 
     # Чтение UID
