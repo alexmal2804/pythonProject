@@ -31,7 +31,6 @@ class Phystech:
             name: str,
             login: str,
             password: str,
-            friends: list = [],
             graduation_year: Optional[int] = None,
             birthday: Optional[datetime] = None,
             status: Optional[str] = None,
@@ -47,7 +46,7 @@ class Phystech:
         self._graduation_year = graduation_year
         self.__login = login
         self.__password = password
-        self.friends = friends
+        self.friends = []
 
     @property
     def is_graduate(self) -> Optional[bool]:
@@ -99,7 +98,7 @@ class Phystech:
 
     # Удаление из списка друзей
     def del_friend(self, uid: int):
-        if uid not in self.friends:
+        if uid  in self.friends:
             self.friends.pop(uid)
         else:
             print(f'Пользователь с идентификатором {uid} не является вашим другом')
@@ -113,7 +112,7 @@ class Phystech:
     # Печать данных о друзьях, стоплисте и списке активностей
     def print_friends(self):
         print('\nМеня зовут', self.name)
-        print('Мой список актвинотсей ', self.get_uid(), Phystech.list_online[self.get_uid()])
+        print('Мой список активноcтей ', self.get_uid(), Phystech.list_online[self.get_uid()])
         print('Мой список друзей ', self.friends)
         print('Мой стоп-лист', self.get_uid(), Phystech.stop_list[self.get_uid()])
         self.set_last_online()
